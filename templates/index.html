@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Career Guidance</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <div class="card">
+
+    <h1>Career Guidance</h1>
+    <p class="subtitle">Personalized recommendations based on your profile</p>
+
+    <form action="/recommend" method="POST">
+      <div class="form-grid">
+
+        <!-- NAME -->
+        <div class="form-group full-width">
+          <label>Name</label>
+          <input name="name" placeholder="Enter your name" required>
+        </div>
+
+        <!-- INTERESTS -->
+        <div class="form-group">
+          <label>Interests (Subjects)</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="interests" value="Biology"> Biology</label>
+            <label><input type="checkbox" name="interests" value="Computer Science"> Computer Science</label>
+            <label><input type="checkbox" name="interests" value="Mathematics"> Mathematics</label>
+            <label><input type="checkbox" name="interests" value="Physics"> Physics</label>
+            <label><input type="checkbox" name="interests" value="Chemistry"> Chemistry</label>
+            <label><input type="checkbox" name="interests" value="Commerce"> Commerce</label>
+            <label><input type="checkbox" name="interests" value="Economics"> Economics</label>
+            <label><input type="checkbox" name="interests" value="Psychology"> Psychology</label>
+          </div>
+        </div>
+
+        <!-- STRENGTHS -->
+        <div class="form-group">
+          <label>Strengths</label>
+          <div class="checkbox-group">
+            <label><input type="checkbox" name="strengths" value="Analytical"> Analytical</label>
+            <label><input type="checkbox" name="strengths" value="Creative"> Creative</label>
+            <label><input type="checkbox" name="strengths" value="Leadership"> Leadership</label>
+            <label><input type="checkbox" name="strengths" value="Communication"> Communication</label>
+            <label><input type="checkbox" name="strengths" value="Problem Solving"> Problem Solving</label>
+            <label><input type="checkbox" name="strengths" value="Teamwork"> Teamwork</label>
+          </div>
+        </div>
+
+        <!-- FAMILY INCOME -->
+        <div class="form-group">
+          <label>Family Income</label>
+          <select name="income" required>
+            <option value="">Select income range</option>
+            <option value="Below 2 Lakhs">Below 2 Lakhs</option>
+            <option value="2 – 5 Lakhs">2 – 5 Lakhs</option>
+            <option value="5 – 8 Lakhs">5 – 8 Lakhs</option>
+            <option value="8 – 12 Lakhs">8 – 12 Lakhs</option>
+            <option value="Above 12 Lakhs">Above 12 Lakhs</option>
+          </select>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="form-group">
+          <label>Your Location</label>
+          <input name="user_location" placeholder="Eg: Adyar, Velachery" required>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="full-width">
+          <button type="submit">Get Personalized Recommendations</button>
+        </div>
+
+      </div>
+    </form>
+
+  </div>
+</div>
+</body>
+</html>

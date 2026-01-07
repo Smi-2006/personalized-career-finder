@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Colleges & Careers</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1>{{ course }}</h1>
+
+    <h2>Available Colleges</h2>
+    <div class="card-list">
+      {% for c in colleges %}
+      <div class="item-card">
+        <h3>{{ c.collegeName }}</h3>
+        <p>📍 {{ c.location }}</p>
+        <p>💰 Fees: ₹{{ c.fee }}</p>
+        <span class="badge">{{ c.distance }}</span>
+      </div>
+      {% endfor %}
+    </div>
+
+    <hr>
+
+    <h2>Career Opportunities</h2>
+    <div class="card-list">
+      {% for career in careers %}
+      <div class="item-card">
+        <h3>{{ career.title }}</h3>
+        <p class="subtitle">{{ career.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <br>
+    <a class="link-btn" href="/">← Back to Home</a>
+  </div>
+</div>
+</body>
+</html>

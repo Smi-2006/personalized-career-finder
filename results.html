@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recommended Courses</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1>Recommended Courses</h1>
+
+    <div class="card-list">
+      {% for course in courses %}
+      <div class="item-card">
+        <h3>{{ course.name }}</h3>
+        <p class="subtitle">{{ course.explanation }}</p>
+
+        <a class="link-btn"
+           href="/colleges?course={{ course.name | urlencode }}&user_location={{ user_location | urlencode }}">
+          View Colleges →
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <br>
+    <a class="link-btn" href="/">← Back</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,13 +1,16 @@
 from flask import Flask, render_template, request, session
 from dotenv import load_dotenv
-import os, requests
+import os
+import requests
 
 from firebase import db
 from prompt_builder import build_prompt
 
+# Load environment variables
 load_dotenv()
+
 app = Flask(__name__)
-app.secret_key = "career_secret_key"
+app.secret_key = os.getenv("FLASK_SECRET_KEY", "career_secret_key")
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
@@ -55,17 +58,14 @@ def get_careers_for_course(course, strengths):
 
     return careers[:6]
 
-
 # ---------------- HOME ----------------
 @app.route("/")
 def index():
     return render_template("index.html")
 
-
 # ---------------- COURSE RECOMMENDATION ----------------
 @app.route("/recommend", methods=["POST"])
 def recommend():
-    # ✅ Get multiple values from checkboxes
     interests_list = request.form.getlist("interests")
     strengths_list = request.form.getlist("strengths")
 
@@ -124,7 +124,6 @@ def recommend():
         user_location=student["user_location"]
     )
 
-
 # ---------------- COLLEGES + STRENGTH-BASED CAREERS ----------------
 @app.route("/colleges")
 def colleges():
@@ -148,7 +147,7 @@ def colleges():
 
             colleges.append(c)
 
-    # 🔥 Careers personalized by course + strengths
+    # Careers personalized by course + strengths
     careers = get_careers_for_course(course, strengths)
 
     return render_template(
@@ -158,6 +157,7 @@ def colleges():
         careers=careers
     )
 
-
+# ---------------- RUN APP ----------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
